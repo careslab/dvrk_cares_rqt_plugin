@@ -81,14 +81,14 @@ class MyPlugin(Plugin):
         rospy.Publisher('/assistant/clutchless/run', Bool, latch=True, queue_size=1).publish(Bool(False))
         
     def _on_powerOnButton_pressed(self):
-        rospy.Publisher('/assistant/home', Empty, latch=True, queue_size=1).publish(Empty())
+        rospy.Publisher('/assistant/home', Empty, queue_size=1).publish(Empty())
         self._widget.powerOnButton.setEnabled(False)
         self._widget.homeButton.setEnabled(True)
         self._widget.powerOffButton.setEnabled(True)
         self._widget.resetButton.setEnabled(True)
 
     def _on_powerOffButton_pressed(self):
-        rospy.Publisher('/assistant/power_off', Empty, latch=True, queue_size=1).publish(Empty())
+        rospy.Publisher('/assistant/power_off', Empty, queue_size=1).publish(Empty())
         self._widget.powerOnButton.setEnabled(True)
         self._widget.homeButton.setEnabled(False)
         self._widget.powerOffButton.setEnabled(False)
@@ -110,7 +110,7 @@ class MyPlugin(Plugin):
         self._widget.teleopRadioButton.setEnabled(True)
 
     def _on_resetButton_pressed(self):
-        rospy.Publisher('/assistant/reset', Empty, latch=True, queue_size=1).publish(Empty())
+        rospy.Publisher('/assistant/reset', Empty, queue_size=1).publish(Empty())
 
     def _on_autocameraRadioButton_pressed(self):
         if not self._widget.autocameraRadioButton.isChecked():
